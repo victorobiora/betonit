@@ -3,6 +3,7 @@ import FutureGamesCardComponent from "./FutureGamesCard";
 import LiveGamesCard from "./LiveGamesCard";
 import BetSlip from "./sideB/BetSlip";
 import GrandPrizeComponent from "./sideB/GrandPrizeComponent";
+import Image from "next/image";
 
 const GamesSnippet: React.FC = () => {
   return (
@@ -14,9 +15,11 @@ const GamesSnippet: React.FC = () => {
       <div className={classes.side_B}>
         <BetSlip />
         <div className={classes.auto_cashout_image}>
-          <img
+          <Image
             src="https://s.sporty.net/common/main/res/1bb2b841d7d9e35df3c3b9c70306fe0a.png"
             alt="betImga"
+            width={500}
+            height={500}
           />
         </div>
         <GrandPrizeComponent />

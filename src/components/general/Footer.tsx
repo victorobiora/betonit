@@ -1,6 +1,7 @@
 import svgList from "@/styles/svgList";
 import classes from "./Footer.module.css";
 import Link from "next/link";
+import Image from "next/image";
 
 const Footer: React.FC = (props) => {
   return (
@@ -13,9 +14,11 @@ const Footer: React.FC = (props) => {
               <span></span>
             </div>
             <div className={classes.nigeria_pic}>
-              <img
+              <Image
                 alt="nigeria-pic"
-                src="//s.sporty.net/global/main/modules/main/desktop/common/core/image/flagNigeria.97e41cea57.png"
+                src="http://s.sporty.net/global/main/modules/main/desktop/common/core/image/flagNigeria.97e41cea57.png"
+                width={200}
+                height={200}
               />
             </div>
           </div>
@@ -96,7 +99,12 @@ const Footer: React.FC = (props) => {
           </ul>
         </li>
       </ul>
-      <ul className={classes.list2}></ul>
+      <ul className={classes.list2}>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
       <ul className={classes.list3}></ul>
     </section>
   );
