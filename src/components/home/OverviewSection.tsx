@@ -10,28 +10,28 @@ const OverViewSection: React.FC = () => {
         </li>
         <li>
           <Link href="">
-            Today's Football <h1> {` > `}</h1>
+            Today's Football <h1> &gt; </h1>
           </Link>
         </li>
         <li>
           <Link href="">
             English Premier League
-            <h1> {` > `}</h1>
+            <h1> &gt; </h1>
           </Link>
         </li>
         <li>
           <Link href="">
-            Bundesliga <h1> {` > `}</h1>
+            Bundesliga <h1> &gt; </h1>
           </Link>
         </li>
         <li>
           <Link href="">
-            La Liga <h1> {` > `}</h1>
+            La Liga <h1> &gt; </h1>
           </Link>
         </li>
         <li>
           <Link href="">
-            Serie A <h1> {` > `}</h1>
+            Serie A <h1> &gt; </h1>
           </Link>
         </li>
       </ul>
@@ -51,7 +51,7 @@ const OverViewSection: React.FC = () => {
         <form>
           <div>
             <span>+234</span>
-            <input type="text" placeholder="Mobile Number"/>
+            <input type="text" placeholder="Mobile Number" />
           </div>
           <button> Register </button>
         </form>

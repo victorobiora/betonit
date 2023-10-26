@@ -23,9 +23,7 @@ const Footer: React.FC = (props) => {
             </div>
           </div>
           <ul className={classes.club_icons}>
-            <li>
-              Official Sports Betting Partner
-            </li>
+            <li>Official Sports Betting Partner</li>
             <li>{svgList.manunited}</li>
             <li>{svgList.barca}</li>
           </ul>
@@ -34,23 +32,23 @@ const Footer: React.FC = (props) => {
           <h5>BetOnIt Nigeria</h5>
           <ul>
             <li>
-              <span>{`>`}</span>
+              <span>&gt;</span>
               <Link href=""> About Us</Link>
             </li>
             <li>
-              <span>{`>`}</span>
+              <span>&gt;</span>
               <Link href=""> Terms and Conditions</Link>
             </li>
             <li>
-              <span>{`>`}</span>
+              <span>&gt;</span>
               <Link href=""> Responsible Gambling</Link>
             </li>
             <li>
-              <span>{`>`}</span>
+              <span>&gt;</span>
               <Link href=""> Privacy Policy</Link>
             </li>
             <li>
-              <span>{`>`}</span>
+              <span>&gt;</span>
               <Link href=""> BetOnIt Group</Link>
             </li>
           </ul>
@@ -59,27 +57,27 @@ const Footer: React.FC = (props) => {
           <h5>How to Play</h5>
           <ul>
             <li>
-              <span>{`>`}</span>
+              <span>&gt;</span>
               <Link href=""> FAQ</Link>
             </li>
             <li>
-              <span>{`>`}</span>
+              <span>&gt;</span>
               <Link href=""> Sports</Link>
             </li>
             <li>
-              <span>{`>`}</span>
+              <span>&gt;</span>
               <Link href=""> Live Betting</Link>
             </li>
             <li>
-              <span>{`>`}</span>
+              <span>&gt;</span>
               <Link href=""> Games</Link>
             </li>
             <li>
-              <span>{`>`}</span>
+              <span>&gt;</span>
               <Link href=""> JackPot</Link>
             </li>
             <li>
-              <span>{`>`}</span>
+              <span>&gt;</span>
               <Link href=""> Others</Link>
             </li>
           </ul>
