@@ -40,6 +40,8 @@ const OverViewSection: React.FC = () => {
         <Image
           src="https://www.sportsadda.com/static-assets/waf-images/aa/42/35/16-9/Yze0Zg0Uz2.jpg?v=1.5&w=420%20420w"
           alt="betonit_center"
+          width={400}
+          height={400}
         />
       </div>
       <div className={classes.instant_reg}>
