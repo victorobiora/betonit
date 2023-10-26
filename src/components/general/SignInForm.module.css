@@ -1,0 +1,50 @@
+.form_container {
+    display: flex;
+    position: relative;
+    top: 0.5rem;
+    height: 20%;
+}
+
+.form_getInput {
+    margin: 0 0.5rem;
+    display: flex;
+    justify-content: flex-start;
+
+}
+
+.form_getInput input, .form_getInput span{
+    background-color: rgb(182, 6, 6);
+    border-color: transparent;
+    color: white;
+    padding: 0 0.5rem;
+}
+
+.form_getInput button {
+    font-size: 0.75rem;
+    padding: 0.5rem;
+    border: 1px solid #fff;
+    color: #Fff;
+    background-color: transparent;
+}
+
+.form_getInput input::placeholder{
+    color: rgba(128, 128, 128, 0.7);
+}
+
+.form_getInput span {
+    color: white;
+    padding: 0.32rem 0.5rem;
+    position: relative;
+    top: 1%;
+    font-size: 0.9rem;
+}
+
+.form_getInput .login_button{
+    background-color: rgba(123, 9, 17, 0.8);
+    padding: 0.32rem 0.7rem;
+    cursor: pointer;
+}
+
+.form_getInput input:focus{
+   outline: none;
+}

@@ -1,0 +1,26 @@
+.container {
+    padding: 0 13%;
+    margin-top: 2rem;
+    display: flex;
+}
+
+.side_A {
+    display: flex;
+    flex-direction: column;
+    width: 73%;
+    margin-right: 2%;
+}
+
+.side_B {
+    display: flex ;
+    flex-direction: column;
+    width: 25%;
+}
+
+.side_B > * {
+    margin-bottom: 1rem;
+}
+
+.auto_cashout_image, .auto_cashout_image img {
+    width: 100%;
+}

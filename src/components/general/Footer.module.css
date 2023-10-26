@@ -1,0 +1,96 @@
+.container {
+  color: #fff;
+  margin-top: 2rem;
+}
+
+.container > ul {
+  list-style: none;
+  display: flex;
+}
+
+.list1 {
+  background-color: #1b1e25;
+  padding: 2% 13%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.list1 > li:first-child {
+  width: 35%;
+}
+
+.site_icon {
+  display: flex;
+  position: relative;
+  width: 63%;
+  margin-bottom: 5%;
+  min-width: 14.5rem;
+}
+
+.site_icon_name {
+  font-style: italic;
+}
+
+.site_icon_name span {
+  width: 100%;
+  display: block;
+  border-top: 2px solid #fff;
+}
+
+.nigeria_pic {
+  height: 1.6rem;
+  margin: 0 3%;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.club_icons {
+  display: flex;
+  width: 100%;
+  list-style: none;
+}
+
+.club_icons li:first-child {
+  width: 40%;
+  padding-top: 5%;
+  line-height: 1.4rem;
+  font-size: 1.11rem;
+}
+
+.club_icons li:not(:first-child) {
+  height: 4.9rem;
+  padding: 4%;
+  padding-top: 5%;
+}
+
+.club_icons li:nth-child(2) {
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+}
+
+.lists h5 {
+  margin-bottom: 0.8rem;
+
+}
+
+.lists li {
+  list-style: none;
+  font-size: 0.75rem;
+  margin: 0.5rem 0;
+}
+
+.lists li span {
+  font-weight: 800;
+}
+
+.icon_socials {
+  display: flex;
+}
+
+.icon_socials > a {
+  display: inline-block;
+  height: 2rem;
+  margin: 0 1%;
+}
+

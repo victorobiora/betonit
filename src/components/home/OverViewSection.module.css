@@ -1,0 +1,96 @@
+.overview_container {
+  padding: 0 13%;
+  background-image: url("https://s.sporty.net/global/main/modules/main/desktop/common/components/imgBanner/right.a9a17f66b1.jpg");
+  background-size: contain;
+  height: 17rem;
+  display: flex;
+}
+
+.ticket_lists, .instant_reg{
+  list-style: none;
+  color: #fff;
+  font-size: 1rem;
+  background-color:rgb(27, 30, 37);
+  padding: 0 1rem;
+  height: 100%;
+  width: 30%;
+}
+
+.ticket_lists li {
+  padding: 0.4rem 0;
+  border-bottom: 1px solid grey;
+}
+
+.ticket_lists li a {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ticket_lists li a h1 {
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: #0D9737;
+}
+
+.overview_container_center_image {
+    height: 100%;
+    width: 44%;
+    padding: 0.5rem 0;
+}
+
+.overview_container_center_image img{
+ height: 100%;
+ width: 100%;
+}
+
+.instant_reg {
+    padding: 2rem;
+    width: 26%;
+}
+
+.instant_reg div p {
+    border-left: 5px solid #33EA6A;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #33EA6A;
+    padding-left: 8px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    line-height: 1.17;
+
+}
+
+.instant_reg > * , .instant_reg form > * {
+    margin: 0.5rem 0;
+}
+
+.instant_reg form div {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: flex-start;
+    color: black;
+}
+
+.instant_reg form div input {
+  padding: 0.5rem;
+  width: 100%;
+  border: 0;
+  background-color: #fff;
+  outline: none;
+}
+
+.instant_reg form div span {
+    background-color: #fff;
+    padding: 0.5rem;
+}
+
+
+.instant_reg form button {
+    padding: 0.5rem;
+    width: 100%;
+    text-align: center;
+    background-color: #0D9737;
+    border-color: transparent;
+    color: #fff;
+    cursor: pointer;
+}

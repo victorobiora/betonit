@@ -1,0 +1,95 @@
+.sub_games {
+    list-style: none;
+    margin-top: 2%;
+  }
+  
+  
+  .sub_games_header,
+  .sub_games_main {
+    display: grid;
+    border-top: 1px solid rgba(53, 58, 69, 0.3);
+    padding: 0.5rem 0;
+    grid-template-rows: 100%;
+    grid-template-columns: 40% 60%;
+  }
+  
+  .sub_games_main {
+    font-size: 0.85rem;
+  }
+  
+  .team_data{
+    display: flex;
+  }
+  
+  .team_data_details {
+    margin-right: 10%;
+  }
+  
+  .time {
+     font-weight: 800;
+  }
+  
+  .id{
+    font-weight: 500;
+    color: #d8d8d8;
+  }
+  .sub_games_main {
+    grid-template-columns: 35% 65%;
+  }
+  
+  .sub_games_header_title {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 40% 60%;
+  }
+  
+  .homeOrAway{
+    margin-right: 10%;
+  }
+  
+  .homeOrAway,
+  .goalsOdds {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 33%);
+  }
+  
+  .sub_games_main_odds {
+    display: grid;
+    grid-template-columns: 40% 55% 5%;
+  }
+  
+  .sub_games_main_odds div {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(33%, 1fr));
+    background-color: #0D9737;
+    cursor: pointer;
+    border-radius: 0.4rem;
+    color: white;
+  }
+  
+  .sub_games_main_odds div:first-child {
+    margin-right: 5%;
+  }
+  
+  .sub_games_main_odds div li, .sub_games_main_odds div select{
+    border: 1px solid white;
+    padding: 0.5rem;
+    text-align: center;
+  }
+  
+  .sub_games_main_odds div select{
+     background-color: #0D9737;
+     cursor: pointer;
+     color: white;
+  }
+
+
+
+  .teams,
+  .sub_games_main_odds div {
+    list-style: none;
+  }
+
+  .sub_games_main_odds div li:hover, .sub_games_main_odds div select:hover {
+    background-color: #53f483;
+  }

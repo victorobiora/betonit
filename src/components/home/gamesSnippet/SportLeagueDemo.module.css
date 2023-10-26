@@ -1,0 +1,32 @@
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.sub_leagues {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    padding: 2% 0;
+
+}
+
+.sub_leagues_item {
+    padding: 0.8rem;
+    margin: 0 1%;
+    overflow: hidden;
+    border: 1px solid  rgba(53, 58, 69, 0.3);
+    background-color: rgb(247, 247, 247);
+    cursor: pointer;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.sub_leagues_item:hover, .active{
+    border: 2px solid green;
+}
+
+
+
+.sub_leagues_item h3 {
+    color: rgb(53, 58, 69);
+}

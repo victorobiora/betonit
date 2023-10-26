@@ -1,0 +1,28 @@
+.slip_container{
+    background-color: #353A45;
+    padding: 4%;
+    padding-top: 10%;
+}
+
+.slip_container ul {
+    list-style: none;
+    color: #fff;
+    display: flex;
+
+    line-height: 1.4rem;
+    margin-bottom: 0.5rem;
+}
+
+.slip_container ul li{
+    width: 50%;
+    text-align: center;
+    cursor: pointer;
+    padding-bottom: 0.3rem;
+}
+
+.active_option {
+    border-bottom: 4px solid #33EA6A;
+    transition: border-bottom 0.15s linear;
+    font-weight: 800;
+
+}

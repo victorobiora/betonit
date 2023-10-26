@@ -1,0 +1,89 @@
+.sub_games_main {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(33%, 1fr));
+  border-top: 1px solid rgba(234, 236, 239, 0.15);
+  padding: 0.5rem 0;
+font-size: 0.85rem;
+}
+
+.team_data,
+.team_odds_1 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(33%, 1fr));
+  margin: 0 1%;
+}
+
+.team_odds_2 {
+  display: grid;
+  border-radius: 0.3rem;
+  grid-template-columns: repeat(auto-fit, minmax(25%, 1fr));
+  margin: 0 1%;
+}
+
+.teams_1 {
+  list-style: none;
+  color: rgb(50, 206, 98);
+}
+
+.teams_2 {
+  list-style: none;
+  text-align: end;
+  margin-right: 12%;
+}
+
+.team_odds_1 li,
+.team_odds_2 li,
+.team_odds_2 select {
+  background-color: #0d9737;
+  border: 1px solid rgb(27, 30, 37);
+  height: 80%;
+  text-align: center;
+  color: #fff;
+  padding: 0.7rem 0.4rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+
+.team_odds_1 li:hover,
+.team_odds_2 li:hover,
+.team_odds_2 select:hover {
+    background-color: #53f483;
+}
+
+.team_odds_1 li:first-child,
+.team_odds_2 > *:first-child {
+  border-radius: 0.3rem 0 0 0.3rem;
+}
+
+.team_odds_1 li:last-child,
+.team_odds_2 li:last-child {
+  border-radius: 0 0.3rem 0.3rem 0;
+}
+
+.team_data_details {
+  display: flex;
+
+}
+
+.time {
+  font-weight: 600;
+ 
+}
+
+.polygon {
+  height: 100%;
+  width: 17%;
+  margin-right: 10%;
+  background-color:  #0D9737;
+  border-radius:  0.4rem 0;
+}
+
+
+
+.team_odds_2 select  {
+    padding: 0;
+}

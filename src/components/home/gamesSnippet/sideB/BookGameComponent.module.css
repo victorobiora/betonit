@@ -1,0 +1,82 @@
+.bookingcode_section {
+  background-color: #fff;
+  padding: 7% 2.5%;
+  margin-top: 15%;
+}
+
+.bookingcode_section p {
+  font-size: 0.85rem;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+.bookingcode_section p:last-child {
+  color: #a6a8ae;
+  line-height: 1rem;
+  font-size: 0.85rem;
+}
+
+.bookingcode_section form > * {
+  width: 100%;
+  height: 2.5rem;
+  margin: 0.3rem 0;
+  padding: 3%;
+}
+
+.bookingcode_section form input {
+  color: grey;
+}
+
+.custom_select {
+  position: relative;
+  width: 100%;
+  padding: 0 !important;
+}
+
+.selected_option {
+  text-align: left;
+  padding: 0.5rem;
+  font-size: 0.85rem;
+  border: 1px solid rgb(118, 118, 118);
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.bookingcode_section form select {
+  opacity: 0;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+}
+
+.bookingcode_section form select option {
+  background-color: #f2f3f5;
+  text-align: center;
+  height: 0.5rem;
+}
+
+.bookingcode_section form input:focus,
+.bookingcode_section form select:focus,
+.bookingcode_section form select {
+  outline: none;
+  border: 1px solid green;
+  transition: border 0.15s ease-in;
+}
+
+.formButton {
+  border: none;
+  background-color: green;
+  color: #fff;
+  font-size: 0.96rem;
+  cursor: pointer;
+}
+
+.disabled{
+  background-color: #dcdee5;
+  color: #9ca0ab;
+  cursor: not-allowed;
+}

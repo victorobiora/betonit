@@ -1,0 +1,36 @@
+.item_container {
+  list-style: none;
+}
+
+.item_container > div {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(33%, 1fr));
+  padding: 0.5rem 0;
+  align-items: center;
+}
+
+.item_container main:last-child{
+  border-bottom:1px solid rgba(234, 236, 239, 0.15);
+}
+
+.threeway,
+.next_goals {
+  display: flex;
+  line-height: 0.9rem;
+  font-size: 0.9rem;
+  flex-direction: column;
+  margin: 0 1%;
+  text-align: center;
+  color: rgb(156, 160, 171);
+}
+
+.threeway > div,
+.next_goals > div {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: #50545e;
+}
+
+.pHeader {
+  margin-bottom: 1%;
+}

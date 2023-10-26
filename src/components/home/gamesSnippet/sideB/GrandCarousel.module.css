@@ -1,0 +1,42 @@
+.container {
+  height: 35rem;
+  overflow: hidden;
+  width: 100%;
+}
+
+.win_item {
+  background-color: white;
+  margin: 0.5rem 0;
+  padding: 0.05rem 0.5rem;
+  animation: carouselmover 7s linear infinite;
+
+}
+
+.pauseAnimation {
+  animation-play-state: paused; 
+}
+
+.playAnimation {
+  animation-play-state: running; 
+}
+
+.win_item > div {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0;
+  font-size: 0.75rem;
+}
+
+.amount {
+  color: #0d9737;
+  font-size: 1.05rem;
+}
+
+@keyframes carouselmover {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-16.5rem);
+  }
+}
