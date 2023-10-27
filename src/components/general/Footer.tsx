@@ -98,12 +98,42 @@ const Footer: React.FC = (props) => {
         </li>
       </ul>
       <ul className={classes.list2}>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
+        <li className={classes.list2Image}>
+          <Image alt="18plus" width={400} height={400} src='https://s.sporty.net/global/main/modules/main/desktop/common/core/image/forum@2x.c05a82e567.svg'/>
+        </li>
+        <li>
+        Age 18 and above only to register or play at BetOnIt. Play Responsibly.
+        <br />
+         Betting is addictive and can be psychologically harmful.
+        </li>
+        <li className={classes.list2Image}>
+          <Image src='https://s.sporty.net/global/main/modules/main/desktop/common/core/image/license@2x.c598257514.svg' alt="text" width={200} height={300} />
+        </li>
+        <li>
+        BetOnIt Nigeria is NOT licensed by National Lottery Regulatory Commission. <br /> This is just a personal project.
+        </li>
       </ul>
-      <ul className={classes.list3}></ul>
+      <ul className={classes.list3}>
+        <li>
+          <ul className={classes.list3_sponsorslist}>
+            <li> <Image src='https://s.sporty.net/ng/main/modules/common-wap/components/layout/pagelate/footer/image/logo_gtbank.a868bb38f2.png' alt="gtbank" height={500} width={500}/></li>
+            <li> <Image src='https://s.sporty.net/ng/main/modules/common-wap/components/layout/pagelate/footer/image/logo_firstbank.7b50fd39e2.png' alt="firstbank" height={500} width={500}/></li>
+            <li> <Image src='https://s.sporty.net/ng/main/modules/common-wap/components/layout/pagelate/footer/image/logo_opoy.90ff46b6a4.png' alt="opay" height={500} width={500}/></li>
+            <li> <Image src='https://s.sporty.net/ng/main/modules/common-wap/components/layout/pagelate/footer/image/logo_quickteller.a6b23d7b50.png' alt="quickteller" height={500} width={500}/></li>
+            <li> <Image src='https://s.sporty.net/ng/main/modules/common-wap/components/layout/pagelate/footer/image/logo_verve.5ab70036b4.png' alt="verve" height={500} width={500}/></li>
+            <li> <Image src='https://s.sporty.net/ng/main/modules/common-wap/components/layout/pagelate/footer/image/logo_visa.fd08bf37cf.png' alt="visa" height={500} width={500}/></li>
+            <li> <Image src='https://s.sporty.net/ng/main/modules/common-wap/components/layout/pagelate/footer/image/logo_mc.51fc36230c.png' alt="mastercard" height={500} width={500}/></li>
+            <li> <Image src='https://s.sporty.net/ng/main/modules/common-wap/components/layout/pagelate/footer/image/logo_access.3472797237.png' alt="accesssbank" height={500} width={500}/></li>
+            <li> <Image src='https://s.sporty.net/ng/main/modules/common-wap/components/layout/pagelate/footer/image/logo_uba.2ee63a96d0.png' alt="uba" height={500} width={500}/></li>
+            <li> <Image src='https://s.sporty.net/ng/main/modules/common-wap/components/layout/pagelate/footer/image/logo_zenith.fafd71c357.png' alt="zenith" height={500} width={500}/></li>
+            <li> <Image src='https://s.sporty.net/ng/main/modules/common-wap/components/layout/pagelate/footer/image/logo_diamond.7ca043a3a4.png' alt="diamond" height={500} width={500}/></li>
+            <li> <Image src='https://s.sporty.net/ng/main/modules/common-wap/components/layout/pagelate/footer/image/logo_fidelity.876157a522.png' alt="fidelity" height={500} width={500}/></li>
+          </ul>
+        </li>
+        <li>
+        © 2023 BetOnIt. All rights reserved.
+        </li>
+      </ul>
     </section>
   );
 };

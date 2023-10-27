@@ -8,11 +8,12 @@
   display: flex;
 }
 
-.list1 {
+.list1, .list2 {
   background-color: #1b1e25;
   padding: 2% 13%;
   display: flex;
   justify-content: space-between;
+  border-top: 1px solid #fff;
 }
 
 .list1 > li:first-child {
@@ -94,3 +95,31 @@
   margin: 0 1%;
 }
 
+
+.list2{
+  font-size: 0.75rem;
+}
+
+.list2Image {
+  height: 2rem;
+  margin: 0 2%;
+}
+
+
+.list3{
+  background-color: #121315;
+  padding: 2% 13%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+}
+
+.list3_sponsorslist{
+  list-style: none;
+  display: flex;
+}
+
+.list3_sponsorslist li {
+  height: 1.1rem;
+  margin: 0 0.5rem;
+}
