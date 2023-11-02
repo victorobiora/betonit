@@ -18,6 +18,18 @@ const RegisterComponent: React.FC<{
     regPassword: "",
   });
 
+  const [logInDetails, setLogInDetails] = useState<{
+    logInPhoneNumber: string;
+    logInPassword: string;
+    rememberMeChecked: boolean;
+    keepMeLoggedInChecked: boolean;
+  }>({
+    logInPhoneNumber: "",
+    logInPassword: "",
+    rememberMeChecked: false,
+    keepMeLoggedInChecked: false,
+  });
+
   const regOrLoginClass = isReg
     ? `${classes.register_on}`
     : `${classes.login_on}`;
@@ -37,28 +49,65 @@ const RegisterComponent: React.FC<{
     setIsReg(false);
   };
 
-  const updatePasswordHandler = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setRegisterDetails((prevState) => {
-      return {
-        ...prevState,
-        regPasssword: event.target.value,
-      };
-    });
-  };
-  const updateRegNumberHandler = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setRegisterDetails((prevState) => {
-      return {
-        ...prevState,
-        regPhoneNumber: event.target.value,
-      };
+  const updateCheckedHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setLogInDetails((prevState) => {
+      if (event.target.name === "Remember Me") {
+        return {
+          ...prevState,
+          rememberMeChecked: event.target.checked,
+        };
+      } else {
+        return {
+          ...prevState,
+          keepMeLoggedInChecked: event.target.checked,
+        };
+      }
     });
   };
 
-  console.log(registerDetails)
+  const updatePasswordHandler = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    if (isReg) {
+      setRegisterDetails((prevState) => {
+        return {
+          ...prevState,
+          regPasssword: event.target.value,
+        };
+      });
+    } else {
+      setLogInDetails((prevState) => {
+        return {
+          ...prevState,
+          logInPassword: event.target.value,
+        };
+      });
+    }
+  };
+
+  const updateRegNumberHandler = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    if (!isNaN(Number(event.target.value))) {
+      if (isReg) {
+        setRegisterDetails((prevState) => {
+          return {
+            ...prevState,
+            regPhoneNumber: event.target.value,
+          };
+        });
+      } else {
+        setLogInDetails((prevState) => {
+          return {
+            ...prevState,
+            logInPhoneNumber: event.target.value,
+          };
+        });
+      }
+    }
+  };
+
+  console.log(registerDetails, logInDetails);
 
   return (
     <section className={classes.container}>
@@ -84,6 +133,11 @@ const RegisterComponent: React.FC<{
                 type="text"
                 placeholder="Mobile Number"
                 onChange={updateRegNumberHandler}
+                value={
+                  isReg
+                    ? registerDetails.regPhoneNumber
+                    : logInDetails.logInPhoneNumber
+                }
                 onMouseDown={(): void => {
                   setInputNumberClass(
                     `${classes.input_text} ${classes.addNumberEffect}`
@@ -105,11 +159,19 @@ const RegisterComponent: React.FC<{
             <div className={classes.login_preferences}>
               <ul>
                 <li>
-                  <input type="checkbox" name="Remember Me" />
+                  <input
+                    type="checkbox"
+                    name="Remember Me"
+                    onChange={updateCheckedHandler}
+                  />
                   <label htmlFor="Remember Me">Remember me</label>
                 </li>
                 <li>
-                  <input type="checkbox" name="Keep me signed In" />
+                  <input
+                    type="checkbox"
+                    name="Keep me signed In"
+                    onChange={updateCheckedHandler}
+                  />
                   <label htmlFor="Keep me signed In">Keep me signed In</label>
                 </li>
               </ul>
