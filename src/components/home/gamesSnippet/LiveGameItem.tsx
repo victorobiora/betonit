@@ -22,6 +22,7 @@ const LiveGameItem: React.FC = () => {
         </div>
         <ul className={classes.teams_1}>
           <li className={classes.home_team}>RUGR</li>
+
           <li className={classes.away_team}> Chelsea</li>
         </ul>
         <ul className={classes.teams_2}>

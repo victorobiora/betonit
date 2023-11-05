@@ -7,8 +7,6 @@ import Link from "next/link";
 const HeaderComponent: React.FC = () => {
   const router = useRouter();
 
-  console.log(router.pathname);
-
   const classForLink = (route: string) => {
     if (router.pathname === route) {
       return classes.active;

@@ -42,6 +42,7 @@ const OverViewSection: React.FC = () => {
           alt="betonit_center"
           width={400}
           height={400}
+          priority={true}
         />
       </div>
       <div className={classes.instant_reg}>

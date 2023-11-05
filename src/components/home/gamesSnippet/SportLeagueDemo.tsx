@@ -1,6 +1,7 @@
 import classes from "./SportLeagueDemo.module.css";
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
+import { TailSpin } from "react-loader-spinner";
 import SubGamesComponent from "./SubGamesComponent";
 
 const SportLeagueDemo: React.FC = (props) => {
@@ -16,6 +17,8 @@ const SportLeagueDemo: React.FC = (props) => {
     { num: 4, active: false },
     { num: 5, active: false },
   ]);
+//  const [leagueData, setLeagueData] = useState<>()
+  const [dataIsFetching, setDataIsFetching] = useState <boolean>(false)
 
   const updateGamesHandler = (event: React.MouseEvent<HTMLLIElement>) => {
     //The data attritube represents all data as string and that is why the conditional is structured that way
@@ -39,6 +42,24 @@ const SportLeagueDemo: React.FC = (props) => {
       setSelectedLeague(newArray);
     }
   };
+
+  //we use a useEffect that takes place anytime a user selects a different league
+  //This updates the loading state accordingly and then makes the fetch call to get data for the selected league
+  //afterwards the loading state is removed
+
+  useEffect(() => {
+  const updateLeagueData = async (parameter: string = '') => {
+    const key:string | undefined = process.env.MY_API_KEY
+
+    console.log(key)
+      const initialCall = await fetch(`'https://api.the-odds-api.com/v4/sports/soccer_epl/odds/?apiKey=${key}&regions=us&markets=h2h,spreads,totals&bookmakers=mybookieag&oddsFormat=decimal`)
+      const dataGotten = await initialCall.json();
+
+      console.log(dataGotten)
+    }
+
+    updateLeagueData()
+  }, [selectedLeague])
 
 
   return (
@@ -75,7 +96,15 @@ const SportLeagueDemo: React.FC = (props) => {
           );
         })}
       </ul>
-      <SubGamesComponent />
+      {dataIsFetching && <div className={classes.loading_spinner}>
+      <TailSpin
+              color="#0047AB"
+              ariaLabel="tail-spin-loading"
+              radius="1"
+              visible={true}
+            />
+        </div>}
+     {!dataIsFetching && <SubGamesComponent />} 
     </section>
   );
 };

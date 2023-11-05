@@ -86,8 +86,7 @@
 
 html,
 body {
-  max-width: 100vw;
-  height: 100vh;
+
   overflow-x: hidden;
   font-family: Montserrat, 'Courier New', Courier, monospace;
   font-size: 0.95rem;
@@ -119,4 +118,12 @@ svg, img{
   html {
     color-scheme: dark;
   }
+}
+
+
+@media (min-width: 701px){
+ body {
+  max-width: 100vw;
+  max-height: 100vh;
+ }
 }

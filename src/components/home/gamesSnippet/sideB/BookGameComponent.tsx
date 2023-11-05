@@ -3,9 +3,14 @@ import classes from "./BookGameComponent.module.css";
 
 const BookGameComponent: React.FC = (props) => {
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(true);
+  const [selectedCountry, setSelectedCountry] = useState<string>('Nigeria')
 
 
   let buttonClassName = buttonDisabled ? `${classes.formButton} ${classes.disabled}` : `${classes.formButton}`
+
+   const updateSelectedCountryHandler = (event: React.ChangeEvent <HTMLSelectElement>) => {
+         setSelectedCountry(event.target.value)
+   }
   const updateInputTextHandler = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -22,10 +27,10 @@ const BookGameComponent: React.FC = (props) => {
         <form>
           <div className={classes.custom_select}>
             <div className={classes.selected_option}>
-                <span>Nigeria</span>
+                <span>{selectedCountry}</span>
                 <span>{'>'}</span>
             </div>
-            <select>
+            <select onChange={updateSelectedCountryHandler}>
               <option value="Nigeria">Nigeria</option>
               <option value="Ghana">Ghana</option>
               <option value="Canada">Canada</option>

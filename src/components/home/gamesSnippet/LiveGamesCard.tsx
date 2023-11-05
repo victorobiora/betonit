@@ -22,9 +22,9 @@ const LiveGamesCard: React.FC = () => {
   const sportsSnippetObj: string[] = [
     "Football",
     "Basketball",
-    "Tennis",
-    "Table Tennis",
-    "Hockey",
+    "A. Football",
+    "Boxing",
+    "Ice Hockey",
     "Cricket",
   ];
 

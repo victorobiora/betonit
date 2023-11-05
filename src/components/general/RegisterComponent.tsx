@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./RegisterComponent.module.css";
 import Link from "next/link";
 
@@ -72,7 +72,7 @@ const RegisterComponent: React.FC<{
       setRegisterDetails((prevState) => {
         return {
           ...prevState,
-          regPasssword: event.target.value,
+          regPassword: event.target.value,
         };
       });
     } else {
@@ -85,9 +85,7 @@ const RegisterComponent: React.FC<{
     }
   };
 
-  const updateRegNumberHandler = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const updateNumberHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!isNaN(Number(event.target.value))) {
       if (isReg) {
         setRegisterDetails((prevState) => {
@@ -107,7 +105,31 @@ const RegisterComponent: React.FC<{
     }
   };
 
-  console.log(registerDetails, logInDetails);
+  // console.log(registerDetails, logInDetails);
+
+  useEffect(() => {
+    if (isReg) {
+      if (
+        registerDetails.regPassword.length > 3 &&
+        registerDetails.regPhoneNumber.length > 5
+      ) {
+        setButtonDisabled(false);
+      } else {
+        setButtonDisabled(true);
+      }
+    } else if (!isReg) {
+      if (
+        logInDetails.logInPassword.length > 3 &&
+        logInDetails.logInPhoneNumber.length > 5
+      ) {
+        setButtonDisabled(false);
+      } else {
+        setButtonDisabled(true);
+      }
+    }
+  }, [isReg, registerDetails, logInDetails]);
+
+  console.log(buttonDisabled);
 
   return (
     <section className={classes.container}>
@@ -132,7 +154,7 @@ const RegisterComponent: React.FC<{
               <input
                 type="text"
                 placeholder="Mobile Number"
-                onChange={updateRegNumberHandler}
+                onChange={updateNumberHandler}
                 value={
                   isReg
                     ? registerDetails.regPhoneNumber
@@ -148,11 +170,13 @@ const RegisterComponent: React.FC<{
                 }}
               />
             </div>
-            <div
-              className={classes.input_password}
-              onChange={updatePasswordHandler}
-            >
-              <input type="password" placeholder="Set Password" />
+            <div className={classes.input_password}>
+              <input
+                type="password"
+                placeholder="Set Password"
+                onChange={updatePasswordHandler}
+                value={isReg ? registerDetails.regPassword : logInDetails.logInPassword}
+              />
             </div>
           </div>
           {!isReg && (
