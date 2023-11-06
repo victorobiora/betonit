@@ -4,19 +4,6 @@ import { useEffect } from "react";
 
 export default function Home() {
 
-
-  useEffect(() => {
-    const check = async () => {
-      
-        const d = await fetch('https://api.the-odds-api.com/v4/sports/soccer_epl/odds/?apiKey=1a70c240f4f2b2068b7456231b0a35c9&regions=us&markets=h2h,spreads,totals&bookmakers=mybookieag&oddsFormat=decimal');
-
-        const e = await d.json()
-
-        console.log(e)
-    }
-
-     check()
-  })
   return (
     <>
       <Head>

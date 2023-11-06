@@ -3,22 +3,26 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { TailSpin } from "react-loader-spinner";
 import SubGamesComponent from "./SubGamesComponent";
+import * as dotenv from "dotenv";
+import { demoData } from '../../../../demodata'
+
+dotenv.config();
 
 const SportLeagueDemo: React.FC = (props) => {
   const [selectedLeague, setSelectedLeague] = useState<
     {
-      num: number;
+      category: string;
       active: boolean;
     }[]
   >([
-    { num: 1, active: true },
-    { num: 2, active: false },
-    { num: 3, active: false },
-    { num: 4, active: false },
-    { num: 5, active: false },
+    { category: "soccer_epl", active: true },
+    { category: "soccer_spain_la_liga", active: false },
+    { category: "soccer_italy_serie_a", active: false },
+    { category: "soccer_uefa_champs_league", active: false },
+    { category: "soccer_uefa_europa_league", active: false },
   ]);
-//  const [leagueData, setLeagueData] = useState<>()
-  const [dataIsFetching, setDataIsFetching] = useState <boolean>(false)
+  //  const [leagueData, setLeagueData] = useState<>()
+  const [dataIsFetching, setDataIsFetching] = useState<boolean>(false);
 
   const updateGamesHandler = (event: React.MouseEvent<HTMLLIElement>) => {
     //The data attritube represents all data as string and that is why the conditional is structured that way
@@ -33,7 +37,7 @@ const SportLeagueDemo: React.FC = (props) => {
         (el) => el.active === true
       );
       const IDToBeChanged = selectedLeague.findIndex(
-        (el) => el.num === parseInt(event.currentTarget.dataset.id as string)
+        (el) => el.category === (event.currentTarget.dataset.id as string)
       );
       console.log(currentSelectedID, IDToBeChanged);
       newArray[currentSelectedID].active = false;
@@ -48,19 +52,49 @@ const SportLeagueDemo: React.FC = (props) => {
   //afterwards the loading state is removed
 
   useEffect(() => {
-  const updateLeagueData = async (parameter: string = '') => {
-    const key:string | undefined = process.env.MY_API_KEY
+    const updateLeagueData = async (
+      parameter: string = selectedLeague[0].category
+    ) => {
+      const key: string | undefined = process.env.MY_API_KEY;
 
-    console.log(key)
-      const initialCall = await fetch(`'https://api.the-odds-api.com/v4/sports/soccer_epl/odds/?apiKey=${key}&regions=us&markets=h2h,spreads,totals&bookmakers=mybookieag&oddsFormat=decimal`)
+      console.log(key);
+        console.log(demoData)
+      /*
+      const initialCall = await fetch(
+        `https://api.the-odds-api.com/v4/sports/${parameter}/odds/?apiKey=1a70c240f4f2b2068b7456231b0a35c9&regions=us&markets=h2h,spreads,totals&bookmakers=mybookieag&oddsFormat=decimal`
+      );
       const dataGotten = await initialCall.json();
 
-      console.log(dataGotten)
-    }
+      const gameItemObject = dataGotten.map((el: any) => {
+        return {
+          id: el.id,
+          home_team: el.home_team,
+          away_team: el.away_team,
+          time: el.commence_time,
+          odds: {
+            h2h: {
+              away_team_win: el.bookmakers[0].markets[0].outcomes[1].price,
+              home_team_win: el.bookmakers[0].markets[0].outcomes[0].price,
+              draw: el.bookmakers[0].markets[0].outcomes[2].price,
+            },
+            totals: {
+              point: el.bookmakers[0].markets[1].outcomes[0].point,
+              over: el.bookmakers[0].markets[1].outcomes[0].price,
+              under: el.bookmakers[0].markets[1].outcomes[1].price,
+            },
+          },
+        };
+      });
 
-    updateLeagueData()
-  }, [selectedLeague])
+      console.log(dataGotten);
+      console.log(gameItemObject);*/
+    };
 
+    //passing in the active category into the async function
+    const index = selectedLeague.findIndex((el) => el.active === true);
+
+    updateLeagueData(selectedLeague[index].category);
+  }, [selectedLeague]);
 
   return (
     <section className={classes.container}>
@@ -75,20 +109,20 @@ const SportLeagueDemo: React.FC = (props) => {
               className={activeClass(el.active)}
               onClick={updateGamesHandler}
               data-active={el.active}
-              data-id={el.num}
-              key={el.num}
+              data-id={el.category}
+              key={el.category}
             >
               <p
                 className={classes.sub_leagues_country}
                 data-active={el.active}
-                data-id={el.num}
+                data-id={el.category}
               >
                 Japan
               </p>
               <h3
                 className={classes.sub_leagues_league}
                 data-active={el.active}
-                data-id={el.num}
+                data-id={el.category}
               >
                 B1 League
               </h3>
@@ -96,15 +130,17 @@ const SportLeagueDemo: React.FC = (props) => {
           );
         })}
       </ul>
-      {dataIsFetching && <div className={classes.loading_spinner}>
-      <TailSpin
-              color="#0047AB"
-              ariaLabel="tail-spin-loading"
-              radius="1"
-              visible={true}
-            />
-        </div>}
-     {!dataIsFetching && <SubGamesComponent />} 
+      {dataIsFetching && (
+        <div className={classes.loading_spinner}>
+          <TailSpin
+            color="#0047AB"
+            ariaLabel="tail-spin-loading"
+            radius="1"
+            visible={true}
+          />
+        </div>
+      )}
+      {!dataIsFetching && <SubGamesComponent />}
     </section>
   );
 };
