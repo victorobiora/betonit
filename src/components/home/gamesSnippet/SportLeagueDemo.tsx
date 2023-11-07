@@ -3,25 +3,57 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { TailSpin } from "react-loader-spinner";
 import SubGamesComponent from "./SubGamesComponent";
+import { useAppSelector, useAppDispatch } from "../../../store/hooks";
+import { futureGamesActions } from "@/store/generalStore";
 import * as dotenv from "dotenv";
-import { demoData } from '../../../../demodata'
+import { demoData } from "../../../../demodata";
 
 dotenv.config();
 
-const SportLeagueDemo: React.FC = (props) => {
+const SportLeagueDemo: React.FC<{
+  activeSport: string;
+}> = ({ activeSport }) => {
+  const valve = useAppSelector((el) => el.futureGamesData.leagueData);
+  const dispatch = useAppDispatch();
   const [selectedLeague, setSelectedLeague] = useState<
     {
-      category: string;
+      requestID: string;
+      country: string;
+      competitionCode: string;
       active: boolean;
     }[]
   >([
-    { category: "soccer_epl", active: true },
-    { category: "soccer_spain_la_liga", active: false },
-    { category: "soccer_italy_serie_a", active: false },
-    { category: "soccer_uefa_champs_league", active: false },
-    { category: "soccer_uefa_europa_league", active: false },
+    {
+      requestID: "soccer_epl",
+      country: "England",
+      competitionCode: "EPL",
+      active: true,
+    },
+    {
+      requestID: "soccer_spain_la_liga",
+      country: "Spain",
+      competitionCode: "La Liga",
+      active: false,
+    },
+    {
+      requestID: "soccer_italy_serie_a",
+      country: "Italy",
+      competitionCode: "Serie A",
+      active: false,
+    },
+    {
+      requestID: "soccer_uefa_champs_league",
+      country: "Europe",
+      competitionCode: "UCL",
+      active: false,
+    },
+    {
+      requestID: "soccer_uefa_europa_league",
+      country: "Europe",
+      competitionCode: "UEL",
+      active: false,
+    },
   ]);
-  //  const [leagueData, setLeagueData] = useState<>()
   const [dataIsFetching, setDataIsFetching] = useState<boolean>(false);
 
   const updateGamesHandler = (event: React.MouseEvent<HTMLLIElement>) => {
@@ -37,7 +69,7 @@ const SportLeagueDemo: React.FC = (props) => {
         (el) => el.active === true
       );
       const IDToBeChanged = selectedLeague.findIndex(
-        (el) => el.category === (event.currentTarget.dataset.id as string)
+        (el) => el.requestID === (event.currentTarget.dataset.id as string)
       );
       console.log(currentSelectedID, IDToBeChanged);
       newArray[currentSelectedID].active = false;
@@ -50,15 +82,17 @@ const SportLeagueDemo: React.FC = (props) => {
   //we use a useEffect that takes place anytime a user selects a different league
   //This updates the loading state accordingly and then makes the fetch call to get data for the selected league
   //afterwards the loading state is removed
-
+  console.log(valve);
   useEffect(() => {
     const updateLeagueData = async (
-      parameter: string = selectedLeague[0].category
+      parameter: string = selectedLeague[0].requestID
     ) => {
       const key: string | undefined = process.env.MY_API_KEY;
 
       console.log(key);
-        console.log(demoData)
+      console.log(demoData);
+      dispatch(futureGamesActions.updateLeagueData(demoData));
+
       /*
       const initialCall = await fetch(
         `https://api.the-odds-api.com/v4/sports/${parameter}/odds/?apiKey=1a70c240f4f2b2068b7456231b0a35c9&regions=us&markets=h2h,spreads,totals&bookmakers=mybookieag&oddsFormat=decimal`
@@ -93,43 +127,45 @@ const SportLeagueDemo: React.FC = (props) => {
     //passing in the active category into the async function
     const index = selectedLeague.findIndex((el) => el.active === true);
 
-    updateLeagueData(selectedLeague[index].category);
+    updateLeagueData(selectedLeague[index].requestID);
   }, [selectedLeague]);
 
   return (
     <section className={classes.container}>
-      <ul className={classes.sub_leagues}>
-        {selectedLeague.map((el) => {
-          const activeClass = (activeState: boolean) =>
-            activeState === true
-              ? `${classes.sub_leagues_item} ${classes.active}`
-              : `${classes.sub_leagues_item}`;
-          return (
-            <li
-              className={activeClass(el.active)}
-              onClick={updateGamesHandler}
-              data-active={el.active}
-              data-id={el.category}
-              key={el.category}
-            >
-              <p
-                className={classes.sub_leagues_country}
+      {activeSport === "Football" && (
+        <ul className={classes.sub_leagues}>
+          {selectedLeague.map((el) => {
+            const activeClass = (activeState: boolean) =>
+              activeState === true
+                ? `${classes.sub_leagues_item} ${classes.active}`
+                : `${classes.sub_leagues_item}`;
+            return (
+              <li
+                className={activeClass(el.active)}
+                onClick={updateGamesHandler}
                 data-active={el.active}
-                data-id={el.category}
+                data-id={el.requestID}
+                key={el.requestID}
               >
-                Japan
-              </p>
-              <h3
-                className={classes.sub_leagues_league}
-                data-active={el.active}
-                data-id={el.category}
-              >
-                B1 League
-              </h3>
-            </li>
-          );
-        })}
-      </ul>
+                <p
+                  className={classes.sub_leagues_country}
+                  data-active={el.active}
+                  data-id={el.requestID}
+                >
+                  {el.country}
+                </p>
+                <h3
+                  className={classes.sub_leagues_league}
+                  data-active={el.active}
+                  data-id={el.requestID}
+                >
+                  {el.competitionCode}
+                </h3>
+              </li>
+            );
+          })}
+        </ul>
+      )}
       {dataIsFetching && (
         <div className={classes.loading_spinner}>
           <TailSpin

@@ -44,7 +44,7 @@ const FutureGamesCardComponent: React.FC = () => {
             <SportsSnippetItem  name={item} updateSection={updateSection} sportClass = {setClassActive} key={Math.random()* 100000} />
           ))}
         </ul>
-        <SportLeagueDemo />
+        <SportLeagueDemo activeSport={section}/>
       </div>
     </section>
   );
