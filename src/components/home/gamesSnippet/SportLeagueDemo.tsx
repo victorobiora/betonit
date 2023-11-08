@@ -7,6 +7,7 @@ import { useAppSelector, useAppDispatch } from "../../../store/hooks";
 import { futureGamesActions } from "@/store/generalStore";
 import * as dotenv from "dotenv";
 import { demoData } from "../../../../demodata";
+import ErrorComponent from "@/components/general/ErrorComponent";
 
 dotenv.config();
 
@@ -55,6 +56,11 @@ const SportLeagueDemo: React.FC<{
     },
   ]);
   const [dataIsFetching, setDataIsFetching] = useState<boolean>(false);
+  const [isError, setIsError] = useState<{
+    state: boolean,
+    message: string
+
+  }>({state: false, message: 'nil'})
 
   const updateGamesHandler = (event: React.MouseEvent<HTMLLIElement>) => {
     //The data attritube represents all data as string and that is why the conditional is structured that way
@@ -94,7 +100,9 @@ const SportLeagueDemo: React.FC<{
       dispatch(futureGamesActions.updateLeagueData(demoData));
 
       /*
-      const initialCall = await fetch(
+      try{
+  setDataIsFetching(true)
+ const initialCall = await fetch(
         `https://api.the-odds-api.com/v4/sports/${parameter}/odds/?apiKey=1a70c240f4f2b2068b7456231b0a35c9&regions=us&markets=h2h,spreads,totals&bookmakers=mybookieag&oddsFormat=decimal`
       );
       const dataGotten = await initialCall.json();
@@ -120,6 +128,14 @@ const SportLeagueDemo: React.FC<{
         };
       });
 
+            dispatch(futureGamesActions.updateLeagueData(gameItemObject));
+              setDataIsFetching(false)
+
+      }catch(err){
+        setIsError({state: true,
+        message: 'We could not get your games for some reason. sorry :)'})
+      }
+     
       console.log(dataGotten);
       console.log(gameItemObject);*/
     };
@@ -169,14 +185,14 @@ const SportLeagueDemo: React.FC<{
       {dataIsFetching && (
         <div className={classes.loading_spinner}>
           <TailSpin
-            color="#0047AB"
+            color="grey"
             ariaLabel="tail-spin-loading"
-            radius="1"
             visible={true}
           />
         </div>
       )}
-      {!dataIsFetching && <SubGamesComponent />}
+      {!dataIsFetching && !isError.state && <SubGamesComponent />}
+      {!dataIsFetching && isError.state && <ErrorComponent errMessage={isError.message}/>}
     </section>
   );
 };

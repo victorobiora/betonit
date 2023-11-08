@@ -42,9 +42,9 @@ const SubGameItem: React.FC<{
       </div>
       <ul className={classes.sub_games_main_odds}>
         <div>
-          <li>{data.odds.h2h.home_team_win}</li>
-          <li>{data.odds.h2h.draw}</li>
-          <li>{data.odds.h2h.away_team_win}</li>
+          <li>{data.odds.h2h.home_team_win.toFixed(2)}</li>
+          <li>{data.odds.h2h.draw.toFixed(2)}</li>
+          <li>{data.odds.h2h.away_team_win.toFixed(2)}</li>
         </div>
         <div>
           <select value={goalsOver} onChange={updateGoalsOverHandler}>
