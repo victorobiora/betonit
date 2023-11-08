@@ -57,10 +57,9 @@ const SportLeagueDemo: React.FC<{
   ]);
   const [dataIsFetching, setDataIsFetching] = useState<boolean>(false);
   const [isError, setIsError] = useState<{
-    state: boolean,
-    message: string
-
-  }>({state: false, message: 'nil'})
+    state: boolean;
+    message: string;
+  }>({ state: false, message: "nil" });
 
   const updateGamesHandler = (event: React.MouseEvent<HTMLLIElement>) => {
     //The data attritube represents all data as string and that is why the conditional is structured that way
@@ -90,58 +89,63 @@ const SportLeagueDemo: React.FC<{
   //afterwards the loading state is removed
   console.log(valve);
   useEffect(() => {
+    
+    console.log('dhdu')
+    //passing in the active category into the async function
+    const index = selectedLeague.findIndex((el) => el.active === true);
+
     const updateLeagueData = async (
       parameter: string = selectedLeague[0].requestID
     ) => {
       const key: string | undefined = process.env.MY_API_KEY;
+      
 
       console.log(key);
       console.log(demoData);
-      dispatch(futureGamesActions.updateLeagueData(demoData));
 
-      /*
-      try{
-  setDataIsFetching(true)
- const initialCall = await fetch(
-        `https://api.the-odds-api.com/v4/sports/${parameter}/odds/?apiKey=1a70c240f4f2b2068b7456231b0a35c9&regions=us&markets=h2h,spreads,totals&bookmakers=mybookieag&oddsFormat=decimal`
-      );
-      const dataGotten = await initialCall.json();
+      try {
+        setDataIsFetching(true);
 
-      const gameItemObject = dataGotten.map((el: any) => {
-        return {
-          id: el.id,
-          home_team: el.home_team,
-          away_team: el.away_team,
-          time: el.commence_time,
-          odds: {
-            h2h: {
-              away_team_win: el.bookmakers[0].markets[0].outcomes[1].price,
-              home_team_win: el.bookmakers[0].markets[0].outcomes[0].price,
-              draw: el.bookmakers[0].markets[0].outcomes[2].price,
+        const initialCall = await fetch(
+          `https://api.the-odds-api.com/v4/sports/${parameter}/odds/?apiKey=b8a8bf18424792bc0d72c5843ee3eb0&regions=us&markets=h2h,spreads,totals&bookmakers=mybookieag&oddsFormat=decimal`
+        );
+        const dataGotten = await initialCall.json();
+
+        console.log(dataGotten)
+
+        const gameItemObject = dataGotten.map((el: any) => {
+          return {
+            id: el.id,
+            home_team: el.home_team,
+            away_team: el.away_team,
+            time: el.commence_time,
+            odds: {
+              h2h: {
+                away_team_win: el.bookmakers.length > 0 ? el.bookmakers[0].markets[0].outcomes[1].price : 0.00,
+                home_team_win:  el.bookmakers.length > 0 ?el.bookmakers[0].markets[0].outcomes[0].price : 0.00,
+                draw: el.bookmakers.length > 0 ? el.bookmakers[0].markets[0].outcomes[2].price : 0.00,
+              },
+              totals: {
+                point: el.bookmakers.length > 0 ? el.bookmakers[0].markets[1].outcomes[0].point : 0.00,
+                over: el.bookmakers.length > 0 ? el.bookmakers[0].markets[1].outcomes[0].price : 0.00,
+                under: el.bookmakers.length > 0 ? el.bookmakers[0].markets[1].outcomes[1].price : 0.00,
+              },
             },
-            totals: {
-              point: el.bookmakers[0].markets[1].outcomes[0].point,
-              over: el.bookmakers[0].markets[1].outcomes[0].price,
-              under: el.bookmakers[0].markets[1].outcomes[1].price,
-            },
-          },
-        };
-      });
+          };
+        });
 
-            dispatch(futureGamesActions.updateLeagueData(gameItemObject));
-              setDataIsFetching(false)
+        dispatch(futureGamesActions.updateLeagueData(gameItemObject));
+        setDataIsFetching(false);
 
-      }catch(err){
-        setIsError({state: true,
-        message: 'We could not get your games for some reason. sorry :)'})
+      } catch (err) {
+        console.log('vdjfdnigj' + err)
+        setIsError({
+          state: true,
+          message: "We could not get your games for some reason. sorry :)",
+        });
+        setDataIsFetching(false)
       }
-     
-      console.log(dataGotten);
-      console.log(gameItemObject);*/
     };
-
-    //passing in the active category into the async function
-    const index = selectedLeague.findIndex((el) => el.active === true);
 
     updateLeagueData(selectedLeague[index].requestID);
   }, [selectedLeague]);
@@ -184,15 +188,13 @@ const SportLeagueDemo: React.FC<{
       )}
       {dataIsFetching && (
         <div className={classes.loading_spinner}>
-          <TailSpin
-            color="grey"
-            ariaLabel="tail-spin-loading"
-            visible={true}
-          />
+          <TailSpin color="grey" ariaLabel="tail-spin-loading" visible={true} />
         </div>
       )}
       {!dataIsFetching && !isError.state && <SubGamesComponent />}
-      {!dataIsFetching && isError.state && <ErrorComponent errMessage={isError.message}/>}
+      {!dataIsFetching && isError.state && (
+        <ErrorComponent errMessage={isError.message} />
+      )}
     </section>
   );
 };
