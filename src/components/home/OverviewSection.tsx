@@ -11,7 +11,7 @@ const OverViewSection: React.FC = () => {
         </li>
         <li>
           <Link href="">
-            Today's Football <h1> &gt; </h1>
+            Today&apos;s Football <h1> &gt; </h1>
           </Link>
         </li>
         <li>
