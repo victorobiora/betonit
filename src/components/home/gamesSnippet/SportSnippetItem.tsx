@@ -1,17 +1,20 @@
 
 const SportsSnippetItem: React.FC<{
-  name: string,
+  nameObject: { name: string, id: string},
   updateSection: (name:string)=> void,
-  sportClass: (name:string) => string 
-}> = ({ name, updateSection, sportClass }) => {
+  sportClass: (name:string) => string;
+  updateLeagueData: (parameter: string) => void
+}> = ({ nameObject, updateSection, sportClass, updateLeagueData }) => {
 
 const updateSect = () => {
-    updateSection(name)
+    updateSection(nameObject.name)
+    updateLeagueData(nameObject.id)
+
 }
 
   return (
-    <li className={sportClass(name)} onClick={updateSect}>
-      <p>{name}</p>
+    <li className={sportClass(nameObject.name)} onClick={updateSect}>
+      <p>{nameObject.name}</p>
     </li>
   );
 };

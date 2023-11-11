@@ -33,7 +33,9 @@ const BookGameComponent: React.FC = (props) => {
             <select onChange={updateSelectedCountryHandler}>
               <option value="Nigeria">Nigeria</option>
               <option value="Ghana">Ghana</option>
+              <option value="South Africa">South Africa</option>
               <option value="Canada">Canada</option>
+              <option value="U.S">U.S</option>
             </select>
           </div>
 

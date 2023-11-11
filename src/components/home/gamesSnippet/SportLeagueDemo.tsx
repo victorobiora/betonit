@@ -13,9 +13,13 @@ dotenv.config();
 
 const SportLeagueDemo: React.FC<{
   activeSport: string;
-}> = ({ activeSport }) => {
-  const valve = useAppSelector((el) => el.futureGamesData.leagueData);
-  const dispatch = useAppDispatch();
+  dataIsFetching: boolean;
+  isError: {
+    state: boolean;
+    message: string;
+  };
+  updateLeagueData: (parameter: string) => void
+}> = ({ activeSport, dataIsFetching, isError, updateLeagueData }) => {
   const [selectedLeague, setSelectedLeague] = useState<
     {
       requestID: string;
@@ -55,11 +59,16 @@ const SportLeagueDemo: React.FC<{
       active: false,
     },
   ]);
-  const [dataIsFetching, setDataIsFetching] = useState<boolean>(false);
-  const [isError, setIsError] = useState<{
-    state: boolean;
-    message: string;
-  }>({ state: false, message: "nil" });
+
+
+  //Here, we use a useEffect to call the updateLeagueData function which is on a parent element
+/*
+  useEffect(() => {
+      
+  const index = selectedLeague.findIndex((el) => el.active === true);
+  
+  updateLeagueData(selectedLeague[index].requestID)
+  }, [selectedLeague])*/
 
   const updateGamesHandler = (event: React.MouseEvent<HTMLLIElement>) => {
     //The data attritube represents all data as string and that is why the conditional is structured that way
@@ -84,71 +93,7 @@ const SportLeagueDemo: React.FC<{
     }
   };
 
-  //we use a useEffect that takes place anytime a user selects a different league
-  //This updates the loading state accordingly and then makes the fetch call to get data for the selected league
-  //afterwards the loading state is removed
-  console.log(valve);
-  useEffect(() => {
-    
-    console.log('dhdu')
-    //passing in the active category into the async function
-    const index = selectedLeague.findIndex((el) => el.active === true);
 
-    const updateLeagueData = async (
-      parameter: string = selectedLeague[0].requestID
-    ) => {
-      const key: string | undefined = process.env.MY_API_KEY;
-      
-
-      console.log(key);
-      console.log(demoData);
-
-      try {
-        setDataIsFetching(true);
-
-        const initialCall = await fetch(
-          `https://api.the-odds-api.com/v4/sports/${parameter}/odds/?apiKey=b8a8bf18424792bc0d72c5843ee3eb0&regions=us&markets=h2h,spreads,totals&bookmakers=mybookieag&oddsFormat=decimal`
-        );
-        const dataGotten = await initialCall.json();
-
-        console.log(dataGotten)
-
-        const gameItemObject = dataGotten.map((el: any) => {
-          return {
-            id: el.id,
-            home_team: el.home_team,
-            away_team: el.away_team,
-            time: el.commence_time,
-            odds: {
-              h2h: {
-                away_team_win: el.bookmakers.length > 0 ? el.bookmakers[0].markets[0].outcomes[1].price : 0.00,
-                home_team_win:  el.bookmakers.length > 0 ?el.bookmakers[0].markets[0].outcomes[0].price : 0.00,
-                draw: el.bookmakers.length > 0 ? el.bookmakers[0].markets[0].outcomes[2].price : 0.00,
-              },
-              totals: {
-                point: el.bookmakers.length > 0 ? el.bookmakers[0].markets[1].outcomes[0].point : 0.00,
-                over: el.bookmakers.length > 0 ? el.bookmakers[0].markets[1].outcomes[0].price : 0.00,
-                under: el.bookmakers.length > 0 ? el.bookmakers[0].markets[1].outcomes[1].price : 0.00,
-              },
-            },
-          };
-        });
-
-        dispatch(futureGamesActions.updateLeagueData(gameItemObject));
-        setDataIsFetching(false);
-
-      } catch (err) {
-        console.log('vdjfdnigj' + err)
-        setIsError({
-          state: true,
-          message: "We could not get your games for some reason. sorry :)",
-        });
-        setDataIsFetching(false)
-      }
-    };
-
-    updateLeagueData(selectedLeague[index].requestID);
-  }, [selectedLeague]);
 
   return (
     <section className={classes.container}>

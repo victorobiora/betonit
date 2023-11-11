@@ -3,6 +3,7 @@ import svgList from "@/styles/svgList";
 import futureStyles from "./FutureGamesCard.module.css";
 import { useState } from "react";
 import SportsSnippetItem from "./SportSnippetItem";
+import { sportsSnippetObj } from "./FutureGamesCard";
 
 import SubGameLiveComponent from "./SubLiveGameComponent";
 
@@ -19,14 +20,10 @@ const LiveGamesCard: React.FC = () => {
     }
   };
 
-  const sportsSnippetObj: string[] = [
-    "Football",
-    "Basketball",
-    "A. Football",
-    "Boxing",
-    "Ice Hockey",
-    "Cricket",
-  ];
+  const updateLeagueData = () => {
+
+  }
+
 
   return (
     <section className={classes.live_container}>
@@ -48,12 +45,13 @@ const LiveGamesCard: React.FC = () => {
         </div>
       </div>
       <ul className={classes.sports}>
-        {sportsSnippetObj.map((item: string) => (
+        {sportsSnippetObj.map((item) => (
           <SportsSnippetItem
-            name={item}
+            nameObject={item}
             updateSection={updateSection}
             sportClass={setClassActive}
             key={Math.random() * 100000}
+            updateLeagueData={updateLeagueData}
           />
         ))}
       </ul>
