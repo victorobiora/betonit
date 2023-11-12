@@ -61,15 +61,6 @@ const SportLeagueDemo: React.FC<{
   ]);
 
 
-  //Here, we use a useEffect to call the updateLeagueData function which is on a parent element
-/*
-  useEffect(() => {
-      
-  const index = selectedLeague.findIndex((el) => el.active === true);
-  
-  updateLeagueData(selectedLeague[index].requestID)
-  }, [selectedLeague])*/
-
   const updateGamesHandler = (event: React.MouseEvent<HTMLLIElement>) => {
     //The data attritube represents all data as string and that is why the conditional is structured that way
     //I could use JSON.parse() to convert it back to boolean.
