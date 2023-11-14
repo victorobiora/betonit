@@ -1,9 +1,9 @@
 import classes from "./FutureGamesCard.module.css";
 import svgList from "@/styles/svgList";
-import { useState} from "react";
+import { useState } from "react";
 import SportsSnippetItem from "./SportSnippetItem";
 import SportLeagueDemo from "./SportLeagueDemo";
-import { useAppSelector, useAppDispatch } from "../../../store/hooks";
+import { useAppDispatch } from "../../../store/hooks";
 import { futureGamesActions } from "@/store/generalStore";
 
 export const sportsSnippetObj: { name: string; id: string }[] = [
@@ -15,8 +15,6 @@ export const sportsSnippetObj: { name: string; id: string }[] = [
   { name: "Cricket", id: "cricket_icc_world_cup" },
 ];
 
-
-
 const FutureGamesCardComponent: React.FC = () => {
   const [section, setSection] = useState<string>("Football");
   const dispatch = useAppDispatch();
@@ -25,7 +23,6 @@ const FutureGamesCardComponent: React.FC = () => {
     state: boolean;
     message: string;
   }>({ state: false, message: "nil" });
- 
 
   const updateSection = (name: string) => setSection(name);
 
@@ -37,14 +34,13 @@ const FutureGamesCardComponent: React.FC = () => {
     }
   };
 
-
-
   const updateLeagueData: () => void = async (
     parameter: string = "soccer_epl"
   ) => {
-    const key: string | undefined = process.env.MY_API_KEY;
+    //  const key: string | undefined = process.env.MY_API_KEY;
 
-    console.log(key);
+    //  console.log(key);
+    console.log(parameter)
 
     try {
       setDataIsFetching(true);
@@ -73,7 +69,8 @@ const FutureGamesCardComponent: React.FC = () => {
                   ? el.bookmakers[0].markets[0].outcomes[0].price
                   : 0.0,
               draw:
-                el.bookmakers.length > 0
+                el.bookmakers.length > 0 &&
+                el.bookmakers[0].markets[0].outcomes.length > 2
                   ? el.bookmakers[0].markets[0].outcomes[2].price
                   : 0.0,
             },
@@ -96,6 +93,7 @@ const FutureGamesCardComponent: React.FC = () => {
       });
 
       dispatch(futureGamesActions.updateLeagueData(gameItemObject));
+      setIsError({ state: false, message: "yes" });
       setDataIsFetching(false);
     } catch (err) {
       console.log("vdjfdnigj" + err);
@@ -112,19 +110,18 @@ const FutureGamesCardComponent: React.FC = () => {
       <div className={classes.future_highlights}>
         <span></span>
         <h1>Highlights</h1>
-        <div className={classes.future_refresh}>
+        <a  href='' className={classes.future_refresh}>
           <div className={classes.refresh_svg}>
             {svgList.refresh("#353a45")}
           </div>
           Refresh
-        </div>
+        </a>
       </div>
       <div>
         <ul className={classes.sports}>
           {sportsSnippetObj.map((item) => (
             <SportsSnippetItem
               nameObject={item}
-              
               updateLeagueData={updateLeagueData}
               updateSection={updateSection}
               sportClass={setClassActive}

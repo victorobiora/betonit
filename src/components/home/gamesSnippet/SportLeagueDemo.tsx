@@ -18,7 +18,7 @@ const SportLeagueDemo: React.FC<{
     state: boolean;
     message: string;
   };
-  updateLeagueData: (parameter: string) => void
+  updateLeagueData: (parameter: string) => void;
 }> = ({ activeSport, dataIsFetching, isError, updateLeagueData }) => {
   const [selectedLeague, setSelectedLeague] = useState<
     {
@@ -60,6 +60,12 @@ const SportLeagueDemo: React.FC<{
     },
   ]);
 
+  useEffect(() => {
+    //first, we find the index of the active class/active football league
+    const index = selectedLeague.findIndex((el) => el.active === true);
+
+    updateLeagueData(selectedLeague[index].requestID);
+  }, [selectedLeague]);
 
   const updateGamesHandler = (event: React.MouseEvent<HTMLLIElement>) => {
     //The data attritube represents all data as string and that is why the conditional is structured that way
@@ -83,8 +89,6 @@ const SportLeagueDemo: React.FC<{
       setSelectedLeague(newArray);
     }
   };
-
-
 
   return (
     <section className={classes.container}>
