@@ -105,6 +105,12 @@ const RegisterComponent: React.FC<{
     }
   };
 
+  const registerOrLoginHandler = async (
+    event: React.MouseEvent<HTMLElement>
+  ) => {
+   
+  };
+
   // console.log(registerDetails, logInDetails);
 
   useEffect(() => {
@@ -175,7 +181,11 @@ const RegisterComponent: React.FC<{
                 type="password"
                 placeholder="Set Password"
                 onChange={updatePasswordHandler}
-                value={isReg ? registerDetails.regPassword : logInDetails.logInPassword}
+                value={
+                  isReg
+                    ? registerDetails.regPassword
+                    : logInDetails.logInPassword
+                }
               />
             </div>
           </div>
@@ -203,7 +213,11 @@ const RegisterComponent: React.FC<{
             </div>
           )}
 
-          <button disabled={buttonDisabled} className={buttonClassName}>
+          <button
+            disabled={buttonDisabled}
+            className={buttonClassName}
+            onClick={registerOrLoginHandler}
+          >
             {isReg ? "Create New Account" : "Login"}
           </button>
           {isReg && (

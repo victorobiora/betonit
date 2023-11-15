@@ -105,17 +105,21 @@ const FutureGamesCardComponent: React.FC = () => {
     }
   };
 
+  const refreshGamesHandler = (event:React.MouseEvent<HTMLElement>) => {
+    updateLeagueData()
+  }
+
   return (
     <section className={classes.future_container}>
       <div className={classes.future_highlights}>
         <span></span>
         <h1>Highlights</h1>
-        <a  href='' className={classes.future_refresh}>
+        <div className={classes.future_refresh} onClick={refreshGamesHandler}>
           <div className={classes.refresh_svg}>
             {svgList.refresh("#353a45")}
           </div>
           Refresh
-        </a>
+        </div>
       </div>
       <div>
         <ul className={classes.sports}>
