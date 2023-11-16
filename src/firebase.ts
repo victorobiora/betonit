@@ -3,13 +3,13 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: process.env.FIREBASE_API_KEY,
-  authDomain: "n-inspired.firebaseapp.com",
-  projectId: "n-inspired",
-  storageBucket: "n-inspired.appspot.com",
-  messagingSenderId: "13027551607",
-  appId: "1:13027551607:web:c65ac600b3dcd77605d972",
-  measurementId: "G-RFX7JN4GEN"
+  apiKey: "AIzaSyBLatVgujYF_OpfK_s4K6Vdw6AUmJKwJ58",
+  authDomain: "betonit-bf8e2.firebaseapp.com",
+  projectId: "betonit-bf8e2",
+  storageBucket: "betonit-bf8e2.appspot.com",
+  messagingSenderId: "649970985829",
+  appId: "1:649970985829:web:b4df5ad32c44a2c610cf8c",
+  measurementId: "G-0L65STSQFV"
 };
 
 // Initialize Firebase
@@ -17,4 +17,3 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 
 
-//
