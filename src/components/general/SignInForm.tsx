@@ -22,8 +22,7 @@ const SignInForm: React.FC = () => {
       {" "}
       <form className={classes.form_container}>
         <div className={classes.form_getInput}>
-          <span>+234</span>
-          <input type="text" placeholder="Mobile Number" />
+          <input type="text" placeholder="Email" />
         </div>
         <div className={classes.form_getInput}>
           <input type="password" placeholder="Password" />

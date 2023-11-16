@@ -72,16 +72,11 @@
 }
 
 .instant_reg form div input {
-  padding: 0.5rem;
+  padding: 0.8rem 0.5rem;
   width: 100%;
   border: 0;
   background-color: #fff;
   outline: none;
-}
-
-.instant_reg form div span {
-    background-color: #fff;
-    padding: 0.5rem;
 }
 
 

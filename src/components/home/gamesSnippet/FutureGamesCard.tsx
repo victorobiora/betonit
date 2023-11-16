@@ -46,7 +46,7 @@ const FutureGamesCardComponent: React.FC = () => {
       setDataIsFetching(true);
 
       const initialCall = await fetch(
-        `https://api.the-odds-api.com/v4/sports/${parameter}/odds/?apiKey=b8a8bf18424792bc0d72c5843ee3eb01&regions=us&markets=h2h,spreads,totals&bookmakers=mybookieag&oddsFormat=decimal`
+        `https://api.the-odds-api.com/v4/sports/${parameter}/odds/?apiKey=b8a8bf18424792bc0d72c5843ee3eb0&regions=us&markets=h2h,spreads,totals&bookmakers=mybookieag&oddsFormat=decimal`
       );
       const dataGotten = await initialCall.json();
 

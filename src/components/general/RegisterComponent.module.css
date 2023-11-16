@@ -109,8 +109,6 @@
   border-color: none;
 }
 
-
-
 .reg_form input {
   height: 4rem;
   width: 21rem;
@@ -127,7 +125,7 @@
   outline: none;
 }
 
-.addNumberEffect,
+.addEmailEffect,
 .input_password input:focus {
   border: 1px solid #3bc063;
   transition: border 0.15s ease-in;
@@ -135,15 +133,11 @@
 }
 
 .input_text input {
-  width: 80%;
   border: none;
 }
 
-.input_text span {
-  padding: 0.92rem 0.5rem;
-  padding-top: 1.5rem;
-  width: 20%;
-  background-color: #fff;
+.input_password input{
+  width: 100%;
 }
 
 .compliance_text {
@@ -160,15 +154,14 @@
   height: 35%;
 }
 
-.login_preferences{
-    margin: 1% 0;
-    width: 49%;
-    display: flex;
-    justify-content: space-between;
-
+.login_preferences {
+  margin: 1% 0;
+  width: 49%;
+  display: flex;
+  justify-content: space-between;
 }
 
-.login_preferences ul{
+.login_preferences ul {
   list-style: none;
 }
 
@@ -179,19 +172,18 @@
 }
 
 .login_preferences input[type="checkbox"] {
-    height: 1rem;
-    width: 1rem;
-    margin-right: 1rem;
-    accent-color: green;
+  height: 1rem;
+  width: 1rem;
+  margin-right: 1rem;
+  accent-color: green;
 }
 
-.login_preferences input[type="checkbox"]:checked + label::before  {
-    background-color: green;
+.login_preferences input[type="checkbox"]:checked + label::before {
+  background-color: green;
 }
-
 
 .login_preferences a {
-    color: green;
+  color: green;
 }
 @keyframes shift_to_left {
   from {
@@ -210,19 +202,3 @@
     transform: translateX(9.2rem);
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

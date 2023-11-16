@@ -2,29 +2,43 @@ import React, { useEffect, useState } from "react";
 import classes from "./RegisterComponent.module.css";
 import Link from "next/link";
 
+const emailChecker = (val: string) => {
+  if (
+    val.length > 4 &&
+    val.includes(`@`) &&
+    val.includes(`.`, val.indexOf(`@`)) &&
+    val.indexOf(".") > val.lastIndexOf("@") &&
+    val.lastIndexOf(".") !== val.length - 1
+  ) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
 const RegisterComponent: React.FC<{
   removeRegComponent: () => void;
 }> = (props) => {
   const [isReg, setIsReg] = useState<boolean>(true);
-  const [inputNumberClass, setInputNumberClass] = useState<string>(
+  const [inputEmailClass, setInputEmailClass] = useState<string>(
     classes.input_text
   );
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(true);
   const [registerDetails, setRegisterDetails] = useState<{
-    regPhoneNumber: string;
+    regEmail: string;
     regPassword: string;
   }>({
-    regPhoneNumber: "",
+    regEmail: "",
     regPassword: "",
   });
 
   const [logInDetails, setLogInDetails] = useState<{
-    logInPhoneNumber: string;
+    logInEmail: string;
     logInPassword: string;
     rememberMeChecked: boolean;
     keepMeLoggedInChecked: boolean;
   }>({
-    logInPhoneNumber: "",
+    logInEmail: "",
     logInPassword: "",
     rememberMeChecked: false,
     keepMeLoggedInChecked: false,
@@ -85,31 +99,27 @@ const RegisterComponent: React.FC<{
     }
   };
 
-  const updateNumberHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (!isNaN(Number(event.target.value))) {
-      if (isReg) {
-        setRegisterDetails((prevState) => {
-          return {
-            ...prevState,
-            regPhoneNumber: event.target.value,
-          };
-        });
-      } else {
-        setLogInDetails((prevState) => {
-          return {
-            ...prevState,
-            logInPhoneNumber: event.target.value,
-          };
-        });
-      }
+  const updateEmailHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (isReg) {
+      setRegisterDetails((prevState) => {
+        return {
+          ...prevState,
+          regEmail: event.target.value,
+        };
+      });
+    } else {
+      setLogInDetails((prevState) => {
+        return {
+          ...prevState,
+          logInEmail: event.target.value,
+        };
+      });
     }
   };
 
   const registerOrLoginHandler = async (
     event: React.MouseEvent<HTMLElement>
-  ) => {
-   
-  };
+  ) => {};
 
   // console.log(registerDetails, logInDetails);
 
@@ -117,7 +127,7 @@ const RegisterComponent: React.FC<{
     if (isReg) {
       if (
         registerDetails.regPassword.length > 3 &&
-        registerDetails.regPhoneNumber.length > 5
+        emailChecker(registerDetails.regEmail)
       ) {
         setButtonDisabled(false);
       } else {
@@ -126,7 +136,7 @@ const RegisterComponent: React.FC<{
     } else if (!isReg) {
       if (
         logInDetails.logInPassword.length > 3 &&
-        logInDetails.logInPhoneNumber.length > 5
+        emailChecker(logInDetails.logInEmail)
       ) {
         setButtonDisabled(false);
       } else {
@@ -155,25 +165,23 @@ const RegisterComponent: React.FC<{
         </div>
         <form className={classes.reg_form}>
           <div className={classes.inputData}>
-            <div className={inputNumberClass}>
-              <span>+234</span>
+            <div className={inputEmailClass}>
               <input
-                type="text"
-                placeholder="Mobile Number"
-                onChange={updateNumberHandler}
+                type="email"
+                placeholder="Email"
+                onChange={updateEmailHandler}
                 value={
-                  isReg
-                    ? registerDetails.regPhoneNumber
-                    : logInDetails.logInPhoneNumber
+                  isReg ? registerDetails.regEmail : logInDetails.logInEmail
                 }
                 onMouseDown={(): void => {
-                  setInputNumberClass(
-                    `${classes.input_text} ${classes.addNumberEffect}`
+                  setInputEmailClass(
+                    `${classes.input_text} ${classes.addEmailEffect}`
                   );
                 }}
                 onBlur={(): void => {
-                  setInputNumberClass(`${classes.input_text}`);
+                  setInputEmailClass(`${classes.input_text}`);
                 }}
+                required
               />
             </div>
             <div className={classes.input_password}>

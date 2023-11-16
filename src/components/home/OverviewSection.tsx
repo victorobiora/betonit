@@ -54,8 +54,7 @@ const OverViewSection: React.FC = () => {
         </div>
         <form>
           <div>
-            <span>+234</span>
-            <input type="text" placeholder="Mobile Number" />
+            <input type="email" placeholder="Email" />
           </div>
           <button> Register </button>
         </form>
