@@ -1,8 +1,26 @@
 import Head from "next/head";
 import HomePage from "@/components/home/HomePage";
-import { useEffect } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "@/firebase";
 
 export default function Home() {
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/auth.user
+        const uid = user.uid;
+        console.log(uid, user);
+        // ...
+      } else {
+        // User is signed out
+        console.log('s,mfnhgd')
+        // ...
+      }
+    });
+
+    console.log(auth.currentUser)
+    console.log('dgflkh')
 
   return (
     <>
@@ -18,13 +36,7 @@ export default function Home() {
         />
         <link rel="icon" href="/betoniticon.ico" />
       </Head>
-      <HomePage/>
+      <HomePage />
     </>
   );
 }
-
-/*
-export const getStaticProps = async () => {
-      
-  const initialCall = await fetch('')
-}*/

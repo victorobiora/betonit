@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import classes from "./RegisterComponent.module.css";
 import Link from "next/link";
+import registerOrLogin from "@/registerOrLogin";
 
-const emailChecker = (val: string) => {
+export const emailChecker = (val: string) => {
   if (
     val.length > 4 &&
     val.includes(`@`) &&
     val.includes(`.`, val.indexOf(`@`)) &&
-    val.indexOf(".") > val.lastIndexOf("@") &&
+    val.lastIndexOf(".") > val.lastIndexOf("@") &&
     val.lastIndexOf(".") !== val.length - 1
   ) {
     return true;
@@ -63,6 +64,32 @@ const RegisterComponent: React.FC<{
     setIsReg(false);
   };
 
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  const registerOrLoginHandler = async (
+    event: React.MouseEvent<HTMLElement>
+  ) => {
+    event.preventDefault();
+ const registerRequest = await registerOrLogin({
+      register: isReg,
+      email: isReg ? registerDetails.regEmail : logInDetails.logInEmail,
+      password: isReg
+        ? registerDetails.regPassword
+        : logInDetails.logInPassword,
+    });
+    console.log(registerRequest)
+    if(registerRequest.status === 200){
+// This means the registration was successful and we can proceed to logging them in immediately 
+     const logInRequest = await registerOrLogin({
+      register: false,
+      email: registerRequest.data.body.email,
+      password: registerRequest.data.body.password
+    });
+    console.log(logInRequest)
+    }
+  };
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
   const updateCheckedHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setLogInDetails((prevState) => {
       if (event.target.name === "Remember Me") {
@@ -117,12 +144,6 @@ const RegisterComponent: React.FC<{
     }
   };
 
-  const registerOrLoginHandler = async (
-    event: React.MouseEvent<HTMLElement>
-  ) => {};
-
-  // console.log(registerDetails, logInDetails);
-
   useEffect(() => {
     if (isReg) {
       if (
@@ -144,8 +165,6 @@ const RegisterComponent: React.FC<{
       }
     }
   }, [isReg, registerDetails, logInDetails]);
-
-  console.log(buttonDisabled);
 
   return (
     <section className={classes.container}>

@@ -8,13 +8,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     try {
       const createNewUser = await createUserWithEmailAndPassword(
         auth,
-        req.body.phoneNum,
+        req.body.email,
         req.body.password
       );
       res.status(200).json({ userCredentials: createNewUser, body: req.body });
     } catch (error) {
-      console.log(error)
-      throw new Error('');
+     res.status(401).json({message: error})
     }
   }
 }

@@ -55,11 +55,30 @@ const futureGamesSlice = createSlice({
   },
 });
 
+const loggedInSlice = createSlice({
+  name: "loggedInStatus",
+  initialState: {
+    areWeLoggedIn: false,
+  },
+  reducers: {
+    logIn(state) {
+    
+      state.areWeLoggedIn = true;
+    },
+    logOut: (state) => {
+      console.log('vjdiii4i')
+      state.areWeLoggedIn = false;
+    },
+  },
+});
+
 export const futureGamesActions = futureGamesSlice.actions;
+export const logInActions = loggedInSlice.actions;
 
 const store = configureStore({
   reducer: {
     futureGamesData: futureGamesSlice.reducer,
+    logInStatus: loggedInSlice.reducer
   },
 });
 
