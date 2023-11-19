@@ -14,7 +14,7 @@ export default function Home() {
         // ...
       } else {
         // User is signed out
-        console.log('s,mfnhgd')
+        console.log('signed out')
         // ...
       }
     });
