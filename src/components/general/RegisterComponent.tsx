@@ -83,14 +83,8 @@ const RegisterComponent: React.FC<{
     console.log(registerRequest)
     if(registerRequest.status === 200){
 // This means the registration was successful and we can proceed to logging them in immediately 
-     const logInRequest = await registerOrLogin({
-      register: false,
-      email: registerRequest.data.body.email,
-      password: registerRequest.data.body.password
-    });
-    console.log(logInRequest)
-    // we update the state of the login state
-    dispatch(logInActions.logIn(logInRequest.data.userCredentials.user.uid))
+    // Since Firebase logs us in automatically after register we update the state of the login state
+    dispatch(logInActions.logIn(registerRequest.data.userCredentials.user.uid))
     }
   };
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
