@@ -1,26 +1,9 @@
 import Head from "next/head";
 import HomePage from "@/components/home/HomePage";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "@/firebase";
+
 
 export default function Home() {
 
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/auth.user
-        const uid = user.uid;
-        console.log(uid, user);
-        // ...
-      } else {
-        // User is signed out
-        console.log('signed out')
-        // ...
-      }
-    });
-
-    console.log(auth.currentUser)
-    console.log('dgflkh')
 
   return (
     <>

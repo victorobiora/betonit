@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import classes from "./RegisterComponent.module.css";
 import Link from "next/link";
 import registerOrLogin from "@/registerOrLogin";
+import { logInActions } from "@/store/generalStore";
+import { useAppDispatch } from "@/store/hooks";
 
 export const emailChecker = (val: string) => {
   if (
@@ -20,6 +22,7 @@ export const emailChecker = (val: string) => {
 const RegisterComponent: React.FC<{
   removeRegComponent: () => void;
 }> = (props) => {
+  const dispatch = useAppDispatch()
   const [isReg, setIsReg] = useState<boolean>(true);
   const [inputEmailClass, setInputEmailClass] = useState<string>(
     classes.input_text
@@ -86,6 +89,8 @@ const RegisterComponent: React.FC<{
       password: registerRequest.data.body.password
     });
     console.log(logInRequest)
+    // we update the state of the login state
+    dispatch(logInActions.logIn(logInRequest.data.userCredentials.user.uid))
     }
   };
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////

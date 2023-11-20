@@ -59,15 +59,17 @@ const loggedInSlice = createSlice({
   name: "loggedInStatus",
   initialState: {
     areWeLoggedIn: false,
+    currentUID: '2'
   },
   reducers: {
-    logIn(state) {
-    
+    logIn(state, action:PayloadAction<string>) {
       state.areWeLoggedIn = true;
+      state.currentUID = action.payload
     },
     logOut: (state) => {
       console.log('vjdiii4i')
       state.areWeLoggedIn = false;
+      state.currentUID = ''
     },
   },
 });
