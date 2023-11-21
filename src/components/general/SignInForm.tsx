@@ -5,9 +5,7 @@ import { useAppSelector } from "@/store/hooks";
 import { useAppDispatch } from "@/store/hooks";
 
 const SignInForm: React.FC = () => {
-  const isLoggedIn = useAppSelector(
-    (state) => state.logInStatus.areWeLoggedIn
-  );
+  const isLoggedIn = useAppSelector((state) => state.logInStatus.areWeLoggedIn);
   const dispatch = useAppDispatch();
   const [showRegComponent, setShowRegComponent] = useState<boolean>(false);
 
@@ -41,13 +39,16 @@ const SignInForm: React.FC = () => {
           </div>
         </form>
       )}
-{isLoggedIn &&       <div className={classes.logout_button}>
-        <button onClick={registerButtonHandler}> Log Out </button>
-      </div>}
-
-      {showRegComponent || isLoggedIn && (
-        <RegisterComponent removeRegComponent={removeRegHandler} />
+      {isLoggedIn && (
+        <div className={classes.logout_button}>
+          <button onClick={registerButtonHandler}> Log Out </button>
+        </div>
       )}
+
+      {showRegComponent ||
+        (isLoggedIn && (
+          <RegisterComponent removeRegComponent={removeRegHandler} />
+        ))}
     </>
   );
 };
