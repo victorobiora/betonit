@@ -46,6 +46,7 @@
 .instant_reg {
     padding: 2rem;
     width: 26%;
+   
 }
 
 .instant_reg div p {
@@ -77,6 +78,7 @@
   border: 0;
   background-color: #fff;
   outline: none;
+  color: black;
 }
 
 

@@ -9,11 +9,14 @@
     compiler: {
       removeConsole: process.env.NODE_ENV !== "development",
     },
+    env: {
+      ANALYTICS_ID : process.env.ANALYTICS_ID
+    }
   };
   
   const withPWA = require("next-pwa")({
     dest: "public",
-    disable: process.env.NODE_ENV === "development",
+    disable: true,
     register: true,
     skipWaiting: true
   });

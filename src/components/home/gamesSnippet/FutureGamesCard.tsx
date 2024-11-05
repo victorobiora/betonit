@@ -37,16 +37,14 @@ const FutureGamesCardComponent: React.FC = () => {
   const updateLeagueData: () => void = async (
     parameter: string = "soccer_epl"
   ) => {
-    //  const key: string | undefined = process.env.MY_API_KEY;
+     const key: string | undefined = process.env.NEXT_PUBLIC_MY_API_KEY;
 
-    //  console.log(key);
-    console.log(parameter)
 
     try {
       setDataIsFetching(true);
 
       const initialCall = await fetch(
-        `https://api.the-odds-api.com/v4/sports/${parameter}/odds/?apiKey=b8a8bf18424792bc0d72c5843ee3eb0&regions=us&markets=h2h,spreads,totals&bookmakers=mybookieag&oddsFormat=decimal`
+        `https://api.the-odds-api.com/v4/sports/${parameter}/odds/?apiKey=${key}&regions=us&markets=h2h,spreads,totals&bookmakers=mybookieag&oddsFormat=decimal`
       );
       const dataGotten = await initialCall.json();
 
